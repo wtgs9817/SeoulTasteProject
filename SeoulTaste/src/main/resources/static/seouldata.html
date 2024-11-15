@@ -1,0 +1,46 @@
+/* Javascript 샘플 코드 */
+
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <title>서울시 열린데이터 광장 OpenAPI 샘플(Javascript)</title>
+</head>
+<body>
+<script>
+    //가게 정보 가져오기
+    //서울 열린 데이터 광장 OpenAPI (서울 음식점 정보)
+    var xhr = new XMLHttpRequest();
+
+    // 몇개의 데이터를 가져올건지 범위 지정해줘야함. 1/100  1~100
+    var url = 'http://openapi.seoul.go.kr:8088/4d4474467a77746736306d745a6855/xml/LOCALDATA_072404/2001/3000/'; /* URL */
+
+
+
+    xhr.open('GET', url);
+    xhr.onreadystatechange = function () {
+        if (this.readyState == xhr.DONE) {  // <== 정상적으로 준비되었을때
+            if (xhr.status == 200 || xhr.status == 201) { // <== 호출 상태가 정상적일때
+
+                var xmlobj = xhr.responseXML;
+
+                var restaurantNamelist = xmlobj.getElementsByTagName("BPLCNM");  //가게명 태그
+                var addressList = xmlobj.getElementsByTagName("SITEWHLADDR"); // 주소 태그
+                var detailaddressList = xmlobj.getElementsByTagName("RDNWHLADDR"); //상세주소 태그
+                var catagoryList = xmlobj.getElementsByTagName("UPTAENM");  //
+                var restaurantStatus = xmlobj.getElementsByTagName("DTLSTATENM");  // 영업여부
+
+
+                for(i =0; i<restaurantNamelist.length; i++) {
+                    document.write("[ " + restaurantNamelist[i].textContent + " ] ");
+                }
+            }
+        }
+    }
+    xhr.send('');
+
+
+
+
+</script>
+</body>
+</html>

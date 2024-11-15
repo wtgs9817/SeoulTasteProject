@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD MyBatis Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 연결하려는 mapper interface의 클래스명까지 써야함. -->
+<mapper namespace="com.example.mapper.testMapper">
+
+<select id="getList" resultType="com.example.domain.testVO">
+    select * from tbl_board
+</select>
+
+</mapper>
